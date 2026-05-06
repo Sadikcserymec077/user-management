@@ -68,10 +68,11 @@ body {
 
 /* ─── Utility helpers (not covered by Tailwind v4 by default) ─── */
 .glass {
-  background: rgba(35, 31, 53, 0.72);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--color-border);
+  background: rgba(26, 24, 41, 0.97);
+  /* Solid nearly opaque surface color */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .gradient-text {
