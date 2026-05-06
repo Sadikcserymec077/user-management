@@ -1,145 +1,395 @@
 # MERN User Management Dashboard
 
-A complete, production-ready full-stack MERN (MongoDB, Express, React, Node.js) application built for internship assessment. It features a modern, responsive, and highly polished "dark admin" dashboard aesthetic using Tailwind CSS.
+A complete production-ready Full Stack MERN (MongoDB, Express.js, React.js, Node.js) User Management Dashboard built for the Full Stack Intern (MERN) Assessment Task.
 
-## 🌟 Features
-
-### Backend (Express & MongoDB)
-- **CRUD Operations**: Complete set of RESTful APIs for managing users.
-- **Server-side Pagination**: Efficient fetching through `page` and `limit` query parameters.
-- **Advanced Search**: Case-insensitive partial matching across multiple fields (name, email, mobile, location).
-- **Profile Image Upload**: Integrated `multer` for secure, validated file uploads stored statically.
-- **CSV Export**: Direct API to export the current user list as a downloadable `.csv` file using `json2csv`.
-- **Validation & Error Handling**: Comprehensive validation via `express-validator` and global error handlers covering duplicate emails, payload limits, and invalid inputs.
-
-### Frontend (React & Vite)
-- **Modern UI/UX**: Premium dark glassmorphism design with responsive grids, hover micro-animations, and dynamic gradient avatars.
-- **Routing**: Client-side routing via `react-router-dom` incorporating nested layouts.
-- **State & API**: Centralized Axios configuration with automated error normalization and interception.
-- **Reusable Components**: Clean architecture leveraging components like `UserTable`, `Pagination`, `SearchBar`, `ConfirmModal`, and `UserForm`.
-- **Interactive Forms**: Full client-side regex validations mirroring backend rules.
-- **Toast Notifications**: Integrated `react-toastify` for success and error feedback.
+The application provides a modern responsive admin dashboard UI with complete CRUD operations, server-side pagination, search functionality, CSV export, image upload support, validation, notifications, and deployment configuration.
 
 ---
 
-## 🛠 Tech Stack
+# 🔗 Live Demo
 
-**Frontend:** React, Vite, Tailwind CSS v4, React Router DOM, Axios, React Toastify, React Icons  
-**Backend:** Node.js, Express.js, MongoDB Atlas, Mongoose, Multer, json2csv, CORS, Dotenv, Express-Validator
+Frontend: https://your-netlify-url.netlify.app
+
+Backend API: https://your-render-url.onrender.com/api/users
 
 ---
 
-## 📂 Folder Structure
+# 🌟 Features
 
-```
-mern-task/
-├── client/                 # React Frontend
+## ✅ Backend Features
+- Complete CRUD APIs
+- MongoDB Atlas integration
+- Server-side pagination using `skip()` and `limit()`
+- Search API with case-insensitive partial matching
+- CSV export using `json2csv`
+- Profile image upload using `multer`
+- Global error handling
+- Request validation using `express-validator`
+- Static image serving
+- Proper REST API architecture
+- Environment variable support
+- Production deployment configuration
+
+---
+
+## ✅ Frontend Features
+- Modern dark admin dashboard UI
+- Fully responsive design (Mobile, Tablet, Desktop)
+- React Router DOM multi-routing
+- Reusable component architecture
+- Search functionality
+- Pagination controls
+- Add/Edit/View user pages
+- Delete confirmation modal
+- Toast notifications using `react-toastify`
+- Loading states and spinners
+- Empty state UI
+- Image preview functionality
+- Tailwind CSS styling
+- Axios centralized API handling
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+- React.js
+- Vite
+- Tailwind CSS
+- React Router DOM
+- Axios
+- React Toastify
+- React Icons
+
+## Backend
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- Multer
+- json2csv
+- Express Validator
+- Dotenv
+- CORS
+
+---
+
+# 📸 Screenshots
+
+## Dashboard
+![Dashboard](./screenshots/dashboard.png)
+
+## Add User Page
+![Add User](./screenshots/add-user.png)
+
+## View User Page
+![View User](./screenshots/view-user.png)
+
+---
+
+# 📂 Project Structure
+
+```bash
+mern-user-management/
+│
+├── client/
 │   ├── public/
-│   │   └── _redirects      # Netlify routing config
+│   │   └── _redirects
+│   │
 │   ├── src/
-│   │   ├── components/     # Reusable UI elements
-│   │   ├── layouts/        # Page wrappers
-│   │   ├── pages/          # Main views
-│   │   ├── services/       # Axios API layer
-│   │   ├── App.jsx         # Router config
-│   │   ├── main.jsx        # React entry
-│   │   └── index.css       # Global Tailwind & design system
-│   ├── tailwind.config.js
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── layouts/
+│   │   ├── pages/
+│   │   ├── routes/
+│   │   ├── services/
+│   │   ├── utils/
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
+│   │
+│   ├── package.json
+│   └── tailwind.config.js
+│
+├── server/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── uploads/
+│   ├── utils/
+│   ├── render.yaml
+│   ├── server.js
 │   └── package.json
 │
-└── server/                 # Node/Express Backend
-    ├── config/             # DB connection
-    ├── controllers/        # Route logic
-    ├── middleware/         # Uploads & Error handlers
-    ├── models/             # Mongoose schemas
-    ├── routes/             # API endpoints
-    ├── services/           # Validation rules
-    ├── uploads/            # Static image storage
-    ├── utils/              # Response helpers
-    ├── server.js           # Express entry point
-    └── render.yaml         # Render deployment config
+└── README.md
 ```
 
 ---
 
-## 🚀 Setup Instructions
+# 🚀 Setup Instructions
 
-### 1. Requirements
-Ensure you have **Node.js** (v18+) and a **MongoDB URI** ready.
+## 1. Clone Repository
 
-### 2. Backend Setup
-1. Open a terminal and navigate to the `server/` directory:
-   ```bash
-   cd server
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env` file referencing `.env.example`:
-   ```env
-   PORT=5000
-   NODE_ENV=development
-   MONGO_URI=your_mongodb_connection_string
-   CLIENT_URL=http://localhost:5173
-   ```
-4. Start the server (Dev mode):
-   ```bash
-   npm run dev
-   ```
-
-### 3. Frontend Setup
-1. Open a new terminal and navigate to the `client/` directory:
-   ```bash
-   cd client
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env` file:
-   ```env
-   VITE_API_BASE_URL=http://localhost:5000/api
-   ```
-4. Start the frontend development server:
-   ```bash
-   npm run dev
-   ```
-5. Open your browser to `http://localhost:5173`
+```bash
+git clone https://github.com/your-username/your-repository-name.git
+cd your-repository-name
+```
 
 ---
 
-## 🔗 API Endpoints
+# ⚙️ Backend Setup
+
+## Navigate to Server
+
+```bash
+cd server
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Create `.env` File
+
+```env
+PORT=5000
+NODE_ENV=development
+MONGO_URI=your_mongodb_atlas_uri
+CLIENT_URL=http://localhost:5173
+```
+
+## Run Backend
+
+```bash
+npm run dev
+```
+
+Backend runs on:
+
+```bash
+http://localhost:5000
+```
+
+---
+
+# 💻 Frontend Setup
+
+## Navigate to Client
+
+```bash
+cd client
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Create `.env` File
+
+```env
+VITE_API_BASE_URL=http://localhost:5000/api
+```
+
+## Run Frontend
+
+```bash
+npm run dev
+```
+
+Frontend runs on:
+
+```bash
+http://localhost:5173
+```
+
+---
+
+# 🔗 API Endpoints
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `GET` | `/api/users` | Get paginated users (`?page=1&limit=8`) |
-| `GET` | `/api/users/search` | Search users (`?query=john`) |
-| `GET` | `/api/users/export/csv` | Download all users as CSV |
-| `GET` | `/api/users/:id` | Get single user by ID |
-| `POST` | `/api/users` | Add user (supports `multipart/form-data`) |
-| `PUT` | `/api/users/:id` | Update user (supports `multipart/form-data`) |
-| `DELETE` | `/api/users/:id` | Delete user and cleanup image file |
+| GET | `/api/users` | Get paginated users |
+| GET | `/api/users/search` | Search users |
+| GET | `/api/users/export/csv` | Export users CSV |
+| GET | `/api/users/:id` | Get single user |
+| POST | `/api/users` | Create new user |
+| PUT | `/api/users/:id` | Update user |
+| DELETE | `/api/users/:id` | Delete user |
 
 ---
 
-## 🌐 Deployment Plan
+# 📄 API Examples
 
-### Frontend (Netlify)
-1. Push `client/` to GitHub.
-2. Connect to Netlify.
-3. Build command: `npm run build`
-4. Publish directory: `dist`
-5. Add env var: `VITE_API_BASE_URL=https://your-backend-url.onrender.com/api`
-*(Note: `public/_redirects` is already included to support SPA routing)*
+## Pagination
 
-### Backend (Render.com)
-1. Connect the `server/` codebase to Render as a Web Service.
-2. The `render.yaml` file configures the build and start commands automatically.
-3. Provide the Environment Variables in the Render dashboard:
-   - `MONGO_URI`
-   - `CLIENT_URL` (Set this to your Netlify URL)
+```bash
+GET /api/users?page=1&limit=5
+```
+
+## Search
+
+```bash
+GET /api/users/search?query=sadik
+```
 
 ---
 
-> Built as an assessment project to demonstrate full-stack capabilities, clean architecture, and modern UI engineering.
+# 📱 Responsive Design
+
+The application is fully responsive and optimized for:
+
+- Mobile Devices
+- Tablets
+- Desktop Screens
+
+Implemented using Tailwind CSS responsive utilities:
+- `sm:`
+- `md:`
+- `lg:`
+- `xl:`
+
+---
+
+# ✅ Validation Features
+
+## Frontend Validation
+- Required field validation
+- Email validation
+- Mobile number validation
+- Image type validation
+
+## Backend Validation
+- Duplicate email prevention
+- Request payload validation
+- Image MIME type validation
+- Error response handling
+
+---
+
+# 🔔 Notifications
+
+The application uses `react-toastify` for:
+- Success notifications
+- Error alerts
+- Delete confirmations
+- Validation messages
+
+---
+
+# 📤 CSV Export
+
+Users can export all records as CSV using:
+
+```bash
+/api/users/export/csv
+```
+
+The CSV file downloads automatically with timestamped filename.
+
+---
+
+# 🖼 Image Upload
+
+Image upload functionality includes:
+- Multer integration
+- File type validation
+- Static image serving
+- Profile image preview
+- Image cleanup during delete/update
+
+---
+
+# 🌐 Deployment
+
+## Frontend Deployment (Netlify)
+
+### Build Command
+
+```bash
+npm run build
+```
+
+### Publish Directory
+
+```bash
+dist
+```
+
+### Environment Variable
+
+```env
+VITE_API_BASE_URL=https://your-backend-url.onrender.com/api
+```
+
+### Netlify Redirect Configuration
+
+Create:
+
+```bash
+public/_redirects
+```
+
+Add:
+
+```bash
+/* /index.html 200
+```
+
+---
+
+# 🚀 Backend Deployment (Render)
+
+## Environment Variables
+
+```env
+MONGO_URI=your_mongodb_uri
+CLIENT_URL=https://your-netlify-url.netlify.app
+PORT=5000
+```
+
+## Deployment Features
+- Render Web Service
+- MongoDB Atlas connection
+- Static upload support
+- Production-ready API configuration
+
+---
+
+# 🧪 Features Verified
+
+✅ CRUD Operations  
+✅ Backend Pagination  
+✅ Search API  
+✅ CSV Export  
+✅ Responsive Design  
+✅ Multi Routing  
+✅ Form Validation  
+✅ Image Upload  
+✅ Notifications  
+✅ Error Handling  
+✅ Deployment Working  
+✅ Component-Based Architecture  
+
+---
+
+# 👨‍💻 Author
+
+K Mohammad Sadik
+
+Built as part of the Full Stack Intern (MERN) Assessment Task for Bits and Volts Pvt. Ltd.
+
+---
+
+# 📌 Notes
+
+- Built using MERN Stack architecture
+- Designed with reusable scalable components
+- Follows clean code and modular architecture practices
+- Developed with focus on responsiveness and production-quality UI
