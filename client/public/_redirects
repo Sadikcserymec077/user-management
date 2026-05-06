@@ -1,8 +1,1 @@
-/* ─── Netlify SPA redirect ─────────────────────────────── */
-/* Sends all 404s to index.html so React Router handles them */
-/*                                                            */
-/* Place this file in: client/public/_redirects              */
-/* ──────────────────────────────────────────────────────── */
-/*                                                            */
-/* Netlify syntax (no comment markers needed in real file):  */
-/* /  /index.html  200                                       */
+/* /index.html 200
