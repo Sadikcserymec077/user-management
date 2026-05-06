@@ -20,13 +20,10 @@ const getUsers = async (req, res, next) => {
 
         return res.status(200).json({
             success: true,
-            message: 'Users fetched successfully',
-            data: users,
             currentPage: page,
             totalPages,
             totalUsers,
-            hasNextPage: page < totalPages,
-            hasPrevPage: page > 1,
+            users: users
         });
     } catch (error) {
         next(error);

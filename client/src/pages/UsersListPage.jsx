@@ -15,7 +15,7 @@ export default function UsersListPage() {
     // Pagination state
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const limit = 8;
+    const limit = 5;
 
     // Delete modal state
     const [deleteModal, setDeleteModal] = useState({ isOpen: false, user: null, loading: false });
@@ -29,7 +29,7 @@ export default function UsersListPage() {
                 setTotalPages(1); // Search results aren't paginated in this implementation
             } else {
                 const res = await getUsers(page, limit);
-                setUsers(res.data.data);
+                setUsers(res.data.users);
                 setTotalPages(res.data.totalPages);
             }
         } catch (error) {
@@ -39,14 +39,18 @@ export default function UsersListPage() {
         }
     }, [page, limit, searchQuery]);
 
-    // Debounced search
+    // Reset page when search query changes
+    useEffect(() => {
+        setPage(1);
+    }, [searchQuery]);
+
+    // Debounced fetch
     useEffect(() => {
         const timer = setTimeout(() => {
-            setPage(1); // Reset to page 1 on new search
             fetchUsers();
         }, 400);
         return () => clearTimeout(timer);
-    }, [searchQuery, fetchUsers]);
+    }, [fetchUsers]);
 
     const handleDelete = async () => {
         try {
