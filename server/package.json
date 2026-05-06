@@ -1,0 +1,29 @@
+{
+  "name": "mern-user-management-server",
+  "version": "1.0.0",
+  "description": "Backend API for MERN User Management Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["mern", "user-management", "express", "mongodb"],
+  "author": "Mohammed Sadiq",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "json2csv": "^6.0.0-alpha.2",
+    "mongoose": "^8.4.1",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
