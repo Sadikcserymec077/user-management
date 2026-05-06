@@ -8,9 +8,9 @@ The application provides a modern responsive admin dashboard UI with complete CR
 
 # 🔗 Live Demo
 
-Frontend: https://your-netlify-url.netlify.app
+Frontend: https://user-management-efficiently.netlify.app/
 
-Backend API: https://your-render-url.onrender.com/api/users
+Backend API: https://user-management-api-q70l.onrender.com/
 
 ---
 
