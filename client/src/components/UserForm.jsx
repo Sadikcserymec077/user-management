@@ -59,7 +59,9 @@ export default function UserForm({ initialData = null, onSubmit, loading = false
     const [imageFile, setImageFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(
         initialData?.profileImage
-            ? `${(import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api').replace('/api', '')}/uploads/${initialData.profileImage}`
+            ? initialData.profileImage.startsWith('http')
+                ? initialData.profileImage
+                : `${(import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api').replace('/api', '')}/uploads/${initialData.profileImage}`
             : null
     );
     const [imageError, setImageError] = useState('');
@@ -78,8 +80,12 @@ export default function UserForm({ initialData = null, onSubmit, loading = false
                 location: initialData.location || '',
             });
             if (initialData.profileImage) {
-                const base = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api').replace('/api', '');
-                setImagePreview(`${base}/uploads/${initialData.profileImage}`);
+                if (initialData.profileImage.startsWith('http')) {
+                    setImagePreview(initialData.profileImage);
+                } else {
+                    const base = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api').replace('/api', '');
+                    setImagePreview(`${base}/uploads/${initialData.profileImage}`);
+                }
             }
         }
     }, [initialData]);

@@ -1,7 +1,6 @@
-const fs = require('fs');
-const path = require('path');
 const { Parser } = require('json2csv');
 const User = require('../models/User');
+const { uploadToCloudinary, deleteFromCloudinary } = require('../config/cloudinary');
 const { sendSuccess, sendError } = require('../utils/responseHelper');
 
 // ─── GET ALL USERS (Paginated) ───────────────────────────────────────────────
@@ -92,7 +91,11 @@ const createUser = async (req, res, next) => {
             });
         }
 
-        const profileImage = req.file ? req.file.filename : null;
+        let profileImage = null;
+        if (req.file) {
+            const result = await uploadToCloudinary(req.file.buffer);
+            profileImage = result.secure_url;
+        }
 
         const user = await User.create({
             firstName,
@@ -135,15 +138,15 @@ const updateUser = async (req, res, next) => {
             });
         }
 
-        // Handle image replacement
+        // Handle image replacement with Cloudinary
         let profileImage = user.profileImage;
         if (req.file) {
-            // Delete old image file if it exists
+            // Delete old image file if it exists remotely
             if (user.profileImage) {
-                const oldImagePath = path.join(__dirname, '..', 'uploads', user.profileImage);
-                if (fs.existsSync(oldImagePath)) fs.unlinkSync(oldImagePath);
+                await deleteFromCloudinary(user.profileImage);
             }
-            profileImage = req.file.filename;
+            const result = await uploadToCloudinary(req.file.buffer);
+            profileImage = result.secure_url;
         }
 
         const updatedUser = await User.findByIdAndUpdate(
@@ -164,10 +167,9 @@ const deleteUser = async (req, res, next) => {
         const user = await User.findById(req.params.id);
         if (!user) return sendError(res, 'User not found', 404);
 
-        // Remove profile image if present
+        // Remove profile image from Cloudinary if present
         if (user.profileImage) {
-            const imagePath = path.join(__dirname, '..', 'uploads', user.profileImage);
-            if (fs.existsSync(imagePath)) fs.unlinkSync(imagePath);
+            await deleteFromCloudinary(user.profileImage);
         }
 
         await user.deleteOne();

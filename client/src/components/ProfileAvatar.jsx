@@ -38,9 +38,11 @@ export default function ProfileAvatar({ src, name = '', size = 40, className = '
         flexShrink: 0,
     };
 
-    // Resolve full image URL
+    // Resolve full image URL (handles both local uploads and Cloudinary URLs)
     const baseUrl = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api').replace('/api', '');
-    const fullSrc = src ? `${baseUrl}/uploads/${src}` : null;
+    const fullSrc = src
+        ? src.startsWith('http') ? src : `${baseUrl}/uploads/${src}`
+        : null;
 
     if (fullSrc && !imgError) {
         return (

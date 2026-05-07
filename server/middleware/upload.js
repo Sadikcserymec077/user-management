@@ -1,24 +1,7 @@
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
-const { v4: uuidv4 } = require('uuid');
 
-// Ensure uploads directory exists
-const uploadDir = path.join(__dirname, '..', 'uploads');
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-// Disk storage configuration
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, uploadDir);
-    },
-    filename: (req, file, cb) => {
-        const ext = path.extname(file.originalname).toLowerCase();
-        cb(null, `profile_${uuidv4()}${ext}`);
-    },
-});
+// Memory storage to bypass ephemeral limits (sent to Cloudinary)
+const storage = multer.memoryStorage();
 
 // File filter — images only
 const fileFilter = (req, file, cb) => {
