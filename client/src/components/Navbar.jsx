@@ -15,14 +15,11 @@ export default function Navbar() {
         <nav className="glass sticky top-0 z-40 border-b" style={{ borderColor: 'var(--color-border)' }}>
             <div className="page-wrapper py-0 flex items-center justify-between h-16">
                 {/* Logo */}
-                <Link to="/" className="flex items-center gap-3 group">
-                    <div
-                        className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-extrabold text-base shadow-lg"
-                        style={{ background: 'linear-gradient(135deg, var(--color-primary), var(--color-secondary))' }}
-                    >
+                <Link to="/" className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-md flex items-center justify-center text-white font-bold text-sm bg-indigo-600">
                         U
                     </div>
-                    <span className="text-lg font-bold gradient-text hidden sm:block">UserDash</span>
+                    <span className="text-lg font-bold text-slate-100 hidden sm:block">User Management</span>
                 </Link>
 
                 {/* Desktop nav */}
@@ -31,16 +28,11 @@ export default function Navbar() {
                         <Link
                             key={link.to}
                             to={link.to}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium
                 ${pathname === link.to
-                                    ? 'text-white shadow-md'
-                                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                    ? 'bg-slate-700 text-white'
+                                    : 'text-slate-400 hover:text-white hover:bg-slate-800'
                                 }`}
-                            style={
-                                pathname === link.to
-                                    ? { background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-dark))', boxShadow: '0 4px 14px rgba(99,102,241,0.4)' }
-                                    : {}
-                            }
                         >
                             {link.icon}
                             {link.label}
@@ -69,13 +61,8 @@ export default function Navbar() {
                             key={link.to}
                             to={link.to}
                             onClick={() => setMenuOpen(false)}
-                            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all
-                ${pathname === link.to ? 'text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
-                            style={
-                                pathname === link.to
-                                    ? { background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-dark))' }
-                                    : {}
-                            }
+                            className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium
+                ${pathname === link.to ? 'bg-slate-700 text-white' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
                         >
                             {link.icon}
                             {link.label}

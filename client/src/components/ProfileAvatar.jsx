@@ -1,17 +1,17 @@
 import { useState } from 'react';
 import { FiUser } from 'react-icons/fi';
 
-const GRADIENT_COLORS = [
-    ['#6366f1', '#8b5cf6'],
-    ['#06b6d4', '#0284c7'],
-    ['#10b981', '#059669'],
-    ['#f59e0b', '#d97706'],
-    ['#ec4899', '#db2777'],
+const SOLID_COLORS = [
+    '#4f46e5',
+    '#0284c7',
+    '#16a34a',
+    '#d97706',
+    '#c026d3',
 ];
 
-function getGradient(name = '') {
-    const index = (name.charCodeAt(0) || 0) % GRADIENT_COLORS.length;
-    return GRADIENT_COLORS[index];
+function getColor(name = '') {
+    const index = (name.charCodeAt(0) || 0) % SOLID_COLORS.length;
+    return SOLID_COLORS[index];
 }
 
 export default function ProfileAvatar({ src, name = '', size = 40, className = '' }) {
@@ -19,7 +19,7 @@ export default function ProfileAvatar({ src, name = '', size = 40, className = '
     const initials = name
         ? name.split(' ').map((w) => w[0]).slice(0, 2).join('').toUpperCase()
         : '';
-    const [from, to] = getGradient(name);
+    const bgColor = getColor(name);
 
     const style = {
         width: size,
@@ -33,8 +33,8 @@ export default function ProfileAvatar({ src, name = '', size = 40, className = '
         fontSize: size * 0.36,
         fontWeight: 700,
         color: '#fff',
-        background: `linear-gradient(135deg, ${from}, ${to})`,
-        border: '2px solid rgba(255,255,255,0.08)',
+        background: bgColor,
+        border: '1px solid rgba(255,255,255,0.1)',
         flexShrink: 0,
     };
 

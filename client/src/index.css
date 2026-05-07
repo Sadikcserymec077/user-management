@@ -3,20 +3,19 @@
 
 /* ─── CSS Variables ────────────────────────────────────────────── */
 :root {
-  --color-primary: #6366f1;
-  --color-primary-dark: #4f46e5;
-  --color-secondary: #8b5cf6;
-  --color-accent: #06b6d4;
+  --color-primary: #4f46e5;
+  --color-primary-dark: #3730a3;
+  --color-secondary: #3b82f6;
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
-  --color-bg: #0f0e17;
-  --color-surface: #1a1829;
-  --color-surface-2: #231f35;
-  --color-border: #2e2a45;
-  --color-text: #e2e0f0;
-  --color-text-muted: #9490b3;
-  --shadow-glow: 0 0 24px rgba(99, 102, 241, 0.18);
+  --color-bg: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-2: #334155;
+  --color-border: #475569;
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+  --shadow-glow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
 }
 
 /* ─── Base ─────────────────────────────────────────────────────── */
@@ -68,50 +67,37 @@ body {
 
 /* ─── Utility helpers (not covered by Tailwind v4 by default) ─── */
 .glass {
-  background: rgba(26, 24, 41, 0.97);
-  /* Solid nearly opaque surface color */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-secondary);
 }
 
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 1.5rem;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.card:hover {
-  box-shadow: var(--shadow-glow);
-  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* ─── Form inputs ──────────────────────────────────────────────── */
 .form-input {
   width: 100%;
   background: var(--color-surface-2);
-  border: 1.5px solid var(--color-border);
-  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
   color: var(--color-text);
-  padding: 0.65rem 0.9rem;
+  padding: 0.5rem 0.75rem;
   font-size: 0.9rem;
   font-family: 'Inter', sans-serif;
-  transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
 }
 
 .form-input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
 .form-input::placeholder {
@@ -142,73 +128,62 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  border: none;
-  border-radius: 10px;
-  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-weight: 500;
   font-size: 0.875rem;
-  padding: 0.58rem 1.2rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  white-space: nowrap;
-  font-family: 'Inter', sans-serif;
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 
 .btn:disabled {
-  opacity: 0.55;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background: var(--color-primary);
   color: #fff;
-  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.38);
 }
 
 .btn-primary:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.52);
+  background: var(--color-primary-dark);
 }
 
 .btn-success {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: var(--color-success);
   color: #fff;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
 }
 
 .btn-success:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+  opacity: 0.9;
 }
 
 .btn-danger {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
+  background: var(--color-danger);
   color: #fff;
-  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
 }
 
 .btn-danger:hover:not(:disabled) {
-  transform: translateY(-1px);
+  opacity: 0.9;
 }
 
 .btn-ghost {
   background: transparent;
   color: var(--color-text-muted);
-  border: 1.5px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .btn-ghost:hover:not(:disabled) {
   color: var(--color-text);
-  border-color: var(--color-primary);
-  background: rgba(99, 102, 241, 0.08);
+  border-color: var(--color-text-muted);
 }
 
 .btn-icon {
-  padding: 0.42rem;
-  border-radius: 8px;
-  min-width: 34px;
-  min-height: 34px;
+  padding: 0.25rem;
+  border-radius: 4px;
 }
 
 /* ─── Table ────────────────────────────────────────────────────── */
@@ -259,7 +234,7 @@ body {
 }
 
 .data-table tbody tr:hover {
-  background: rgba(99, 102, 241, 0.06);
+  background: var(--color-surface-2);
 }
 
 /* ─── Animations ────────────────────────────────────────────────── */
@@ -340,12 +315,10 @@ body {
 .modal-box {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 18px;
-  padding: 2rem;
-  max-width: 420px;
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-width: 400px;
   width: 100%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  animation: fadeIn 0.25s ease;
 }
 
 /* ─── Toast overrides ───────────────────────────────────────────── */
