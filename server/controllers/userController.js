@@ -76,9 +76,21 @@ const createUser = async (req, res, next) => {
     try {
         const { firstName, lastName, email, mobile, gender, status, location } = req.body;
 
-        // Duplicate email check
-        const existing = await User.findOne({ email: email.toLowerCase().trim() });
-        if (existing) return sendError(res, 'A user with this email already exists', 409);
+        const existingEmail = await User.findOne({ email });
+        if (existingEmail) {
+            return res.status(400).json({
+                success: false,
+                message: "Email already exists"
+            });
+        }
+
+        const existingMobile = await User.findOne({ mobile });
+        if (existingMobile) {
+            return res.status(400).json({
+                success: false,
+                message: "Mobile number already exists"
+            });
+        }
 
         const profileImage = req.file ? req.file.filename : null;
 
@@ -107,13 +119,20 @@ const updateUser = async (req, res, next) => {
 
         const { firstName, lastName, email, mobile, gender, status, location } = req.body;
 
-        // Duplicate email check excluding this user
-        if (email) {
-            const existing = await User.findOne({
-                email: email.toLowerCase().trim(),
-                _id: { $ne: req.params.id },
+        const existingEmail = await User.findOne({ email, _id: { $ne: req.params.id } });
+        if (existingEmail) {
+            return res.status(400).json({
+                success: false,
+                message: "Email already exists"
             });
-            if (existing) return sendError(res, 'Another user with this email already exists', 409);
+        }
+
+        const existingMobile = await User.findOne({ mobile, _id: { $ne: req.params.id } });
+        if (existingMobile) {
+            return res.status(400).json({
+                success: false,
+                message: "Mobile number already exists"
+            });
         }
 
         // Handle image replacement
